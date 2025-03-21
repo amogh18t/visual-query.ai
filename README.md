@@ -74,10 +74,3 @@ MATCH (s:Module)-[:PASSES]->(d:Module) RETURN s, d
 After processing an image, the software pipeline can be visualized as a graph.
 
 ![Graph Visualization](graph.png)
-
-## 👨‍💻 Contributors
-- **Your Name** (your.email@example.com)
-
-## 📜 License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
