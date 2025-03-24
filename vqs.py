@@ -56,21 +56,20 @@ genai.configure(api_key=gemini_api_key)
 #==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>
 
 input_prompt = """
-You are given an image that contains a pipeline of a software system.
-You must extract information in CSV format with no headers:
-Source_Module, Destination_Module, Information_Passed.
-Do not include any extra characters.
-"""
-prompt = """
 You are given an image which contains pipiline of a software, and you have give me the response in such way that it will have source module, 
 destination module, and the information which is getting passed from one to another, in form of csv data and you do not need add header and 
-any extra character
+any extra character.
+
+Format:
+Source_Module, Destination_Module, Information_Passed
+
+Strictly follow the above format for each entry. No extra or less entry should be there.
 """
 
 #==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>
 
 def get_gemini_response(input,image,prompt):
-    model = genai.GenerativeModel('gemini-2.0-flash-exp')
+    model = genai.GenerativeModel('gemini-2.0-flash')
     response = model.generate_content([input,image[0],prompt])
     return response.text
     
@@ -154,7 +153,7 @@ def process_input(user_query, image_paths):
         image_parts = [{"mime_type": "image/png", "data": image_bytes}]
 
         # Generate response using Gemini AI
-        model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        model = genai.GenerativeModel('gemini-2.0-flash')
         response = model.generate_content([user_query] + image_parts + [input_prompt])
         extracted_data = response.text  # RAW CSV TEXT
 
