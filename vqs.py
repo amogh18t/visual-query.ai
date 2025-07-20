@@ -69,7 +69,7 @@ Strictly follow the above format for each entry. No extra or less entry should b
 #==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>==>
 
 def get_gemini_response(input,image,prompt):
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-2.5-pro')
     response = model.generate_content([input,image[0],prompt])
     return response.text
     
